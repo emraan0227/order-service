@@ -1,14 +1,16 @@
-version: 0.2
+
+  version: 0.2
 
 phases:
+  pre_build:
+   commands:
+       - echo "creating <path-to-folder> folder"
+       - mkdir -p ./<path-to-folder>/
   build:
     commands:
-      - echo Entered the build phase...
-      - mvn clean package
-  post_build:
-    commands:
-      - echo Build completed successfully
+        - echo "Copying the file"
+        - cp index.html ./<path-to-folder>/
 artifacts:
-  files:
-    - target/order-service.jar
-  discard-paths: yes
+   files:
+      - <path-to-folder>/**/*
+      - appspec.yml
